@@ -1,6 +1,10 @@
 export function init(appId: number): void
 export function restartAppIfNecessary(appId: number): boolean
 export function runCallbacks(): void
+export interface Friend {
+  id: PlayerSteamId
+  name: string
+}
 export interface PlayerSteamId {
   steamId64: string
   steamId32: string
@@ -58,6 +62,9 @@ export namespace cloud {
   export function deleteFile(name: string): boolean
   export function fileExists(name: string): boolean
 }
+export namespace friends {
+  export function getFriends(): Promise<Array<Friend>>
+}
 export namespace input {
   export interface AnalogActionVector {
     x: number
@@ -91,7 +98,7 @@ export namespace matchmaking {
     Invisible = 3
   }
   export function createLobby(lobbyType: LobbyType, maxMembers: number): Promise<Lobby>
-  export function joinLobby(lobbyId: bigint): Promise<Lobby>
+  export function joinJobby(lobbyId: bigint): Promise<Lobby>
   export function getLobbies(): Promise<Array<Lobby>>
   export class Lobby {
     id: bigint
